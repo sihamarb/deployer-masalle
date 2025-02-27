@@ -1,0 +1,19 @@
+---
+- name: Deploy Galera Cluster with MariaDB
+  hosts: db
+  become: true
+  vars:
+    # Variables internes au playbook
+    mysql_root_password: "root"  # Mot de passe root MariaDB
+    galera_nodes:
+      - node1
+      - node2
+
+  tasks:
+
+    - name: Install MariaDB and Galera
+      apt:
+        name: mariadb-server
+        state: present
+        update_cache: yes
+
